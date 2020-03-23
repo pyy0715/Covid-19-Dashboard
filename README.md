@@ -1,4 +1,4 @@
-# Corona Dashboard 
+# Corona Dashboard(Ongoing)
 
 본 프로젝트는 코로나 바이러스의 심각성을 인지하고,
 
