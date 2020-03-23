@@ -19,6 +19,7 @@
 
 ### 실행
 ```
+cd corona_crawl/corona_crawl
 scrapy crawl seoul -o seoul.csv -t csv
 scrapy crawl incheon -o incheon.csv -t csv
 ```
