@@ -37,6 +37,7 @@ ipython_config.py
 # Edit at https://www.gitignore.io/?templates=visualstudiocode
 
 ### VisualStudioCode ###
+**/.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
