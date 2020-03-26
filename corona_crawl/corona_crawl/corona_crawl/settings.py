@@ -21,7 +21,7 @@ NEWSPIDER_MODULE = 'corona_crawl.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 FEED_EXPORT_ENCODING = 'utf-8'
-FEED_EXPORT_FIELDS = ['confirmed_date', 'province', 'city', 'sex', 'age', 'state']
+FEED_EXPORT_FIELDS = ['confirmed_date', 'province', 'city', 'sex', 'age']
 LOG_FILE = 'log.txt'
 DUPEFILTER_CLASS = 'scrapy.dupefilters.BaseDupeFilter'
 

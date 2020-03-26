@@ -19,23 +19,16 @@ class IncheonSpider(scrapy.Spider):
              doc = CoronaCrawlItem()
              sex_age = item.css('td:nth-child(3)::text').get()
              confirmed_date = item.css('td:nth-child(4)::text').get()
-             state = item.css('td:nth-child(5)::text').get()
              city = citys[idx]
 
 
              sex = sex_age.split(' / ')[0]
              age = sex_age.split(' / ')[1]
 
-             if state is None:
-                state = 1 # 치료중
-             else:
-                state = 0   # 퇴원 
-
              doc['confirmed_date'] = confirmed_date
              doc['province'] = '인천'
              doc['city'] = city
              doc['sex'] = sex
              doc['age'] = age
-             doc['state'] = state
 
              yield doc

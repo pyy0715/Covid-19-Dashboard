@@ -14,4 +14,3 @@ class CoronaCrawlItem(scrapy.Item):
     city = scrapy.Field()
     sex = scrapy.Field()
     age = scrapy.Field()
-    state = scrapy.Field()
