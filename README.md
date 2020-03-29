@@ -12,9 +12,9 @@
 ### 수집 사이트
 | 그룹   | 지역 | 주소                                                           | Package    | Code |
 |--------|------|----------------------------------------------------------------|------------|------|
-| 수도권 | 서울 | https://www.seoul.go.kr/coronaV/coronaStatus.do                | `scrapy`   |      |
-| 수도권 | 인천 | https://www.incheon.go.kr/health/HE020409                      | `scrapy`   |      |
-| 수도권 | 경기 | https://www.gg.go.kr/bbs/board.do?bsIdx=722&menuId=2903#page=1 | `Selenium` |      |
+| 수도권 | 서울 | https://www.seoul.go.kr/coronaV/coronaStatus.do                | `scrapy`   |[Link](https://github.com/pyy0715/Corona19_Dashboard/blob/master/corona_crawl/corona_crawl/corona_crawl/spiders/seoul.py)    |
+| 수도권 | 인천 | https://www.incheon.go.kr/health/HE020409                      | `scrapy`   |[Link](https://github.com/pyy0715/Corona19_Dashboard/blob/master/corona_crawl/corona_crawl/corona_crawl/spiders/incheon.py)   |
+| 수도권 | 경기 | https://www.gg.go.kr/bbs/board.do?bsIdx=722&menuId=2903#page=1 | `Selenium` |[Link](https://github.com/pyy0715/Corona19_Dashboard/blob/master/corona_crawl/corona_crawl/gyeonggi.py)    |
 
 
 ### 실행
@@ -24,10 +24,10 @@ cd Corona19_Dashboard/corona_crawl/corona_crawl
 conda env create -f environment.yml
 
 # 서울
-scrapy crawl seoul -o data/seoul.csv -t csv
+python -m scrapy crawl seoul -o data/seoul.csv -t csv
 
 # 인천
-scrapy crawl incheon -o data/incheon.csv -t csv
+python -m scrapy crawl incheon -o data/incheon.csv -t csv
 
 # 경기
 python gyeonggi.py
