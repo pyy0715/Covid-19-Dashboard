@@ -32,14 +32,12 @@ class gyeonggi:
         self.sex = []
         self.age = []
         self.province = '경기'
-        self.split_page = [11, 21]
 
     def update(self, add_df):
         if os.path.isfile('./data/gyeonggi.csv'):
             original_df = pd.read_csv('./data/gyeonggi.csv')
-            update_df = pd.concat([add_df, original_df], axis=0)
-            update_df.to_csv('./data/gyeonggi.csv', encoding='utf-8-sig', index=False)
-            print(f'Updated gyeonggi_df.shape: {update_df.shape}')
+            add_df.to_csv('./data/gyeonggi.csv', encoding='utf-8-sig', index=False)
+            print(f'Updated gyeonggi_df: {original_df.shape} -> {add_df.shape}')
         else:
             add_df.to_csv('./data/gyeonggi.csv', encoding='utf-8-sig', index=False)
 
@@ -56,11 +54,13 @@ class gyeonggi:
         last_page = int(pages[-1].get_attribute('href')[-2:])
         print(f'총 페이지 수는 {last_page}개 입니다.')
         
+        split_pages = [i+1 for i in range(last_page) if i%10==0][1:]
+        
         # Page Crawling
         for i in range(1, last_page+1):
 
             # Next Page+10
-            if i in self.split_page:
+            if i in split_pages:
                 print('Page가 넘어갑니다....\n')
                 all_button = self.driver.find_elements_by_css_selector('#ajax-paging-navigation > li')
         
