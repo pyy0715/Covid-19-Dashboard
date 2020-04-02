@@ -21,13 +21,13 @@
 ```
 git clone https://github.com/pyy0715/Corona19_Dashboard.git
 cd Corona19_Dashboard/corona_crawl/corona_crawl
-conda env create -f enviroment.yaml
+conda env create -f enviroㅜment.yml
 
 # 서울
-python -m scrapy crawl seoul -o data/seoul.csv -t csv
+>python -m scrapy crawl seoul -t csv -o - > data/seoul.csv
 
 # 인천
-python -m scrapy crawl incheon -o data/incheon.csv -t csv
+python -m scrapy crawl incheon -t csv -o - > data/incheon.csv
 
 # 경기
 python gyeonggi.py
