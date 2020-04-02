@@ -8,22 +8,30 @@ class IncheonSpider(scrapy.Spider):
 
     def start_requests(self):
         yield scrapy.Request(url='https://www.incheon.go.kr/health/HE020409', callback=self.parse_incheon)
+        
     
 
     def parse_incheon(self, response):
          print('Incheon Crawling...')
-         pages = response.css('section:nth-child(3) table tbody tr')
-         citys = response.css('div.section4-body > div > div.patient-profile-wrap > a > strong:nth-child(2)::text').getall()
+         pages = response.css('section > div.section4-body > div.patient-profile-route-group')
 
          for idx, item in enumerate(pages):
              doc = CoronaCrawlItem()
-             sex_age = item.css('td:nth-child(3)::text').get()
-             confirmed_date = item.css('td:nth-child(4)::text').get()
-             city = citys[idx]
+             
+             text = item.xpath("div[1]/a/text()[3]").get()
+             city = item.xpath("div[1]/a/strong[2]/text()").get()
 
+             text = re.sub('[\t\r\n()]','',text)
+             text = text.split('/')
 
-             sex = sex_age.split(' / ')[0]
-             age = sex_age.split(' / ')[1]
+             sex_age = text[0]
+             confirmed_date = text[1]
+
+             sex = sex_age[0]
+             age = sex_age[1:3]
+
+             city = re.sub(' ', '', city)
+             confirmed_date = re.sub(' ', '', confirmed_date)
 
              doc['confirmed_date'] = confirmed_date
              doc['province'] = '인천'
