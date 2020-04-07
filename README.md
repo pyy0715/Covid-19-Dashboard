@@ -21,7 +21,7 @@
 ```
 git clone https://github.com/pyy0715/Corona19_Dashboard.git
 cd Corona19_Dashboard/corona_crawl/corona_crawl
-conda env create -f enviroㅜment.yml
+conda env create -f environment.yml
 
 # 서울
 >python -m scrapy crawl seoul -t csv -o - > data/seoul.csv
@@ -54,3 +54,5 @@ python gyeonggi.py
 **무엇을 보여줄 것인가?** **의미가 있는가?** **어떻게 배포할 것인가?**
 
 ## Scheduler
+
+crontab?
