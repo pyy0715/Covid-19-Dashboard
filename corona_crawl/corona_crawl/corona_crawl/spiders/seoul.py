@@ -49,18 +49,18 @@ class SeoulSpider(scrapy.Spider):
                  doc = CoronaCrawlItem()
 
                  confirmed_date = item.css('td:nth_child(3)::text').get()
-                 city = item.css('td:nth_child(5)::text').get()
-                 sex_birth = item.css('td:nth_child(4)::text').get()
+                 city = item.css('td:nth_child(4)::text').get()
+                #  sex_birth = item.css('td:nth_child(4)::text').get()
 
-                 birth = int(re.sub('[^0-9]', '', sex_birth))
-                 age = birth_to_age(birth)
+                #  birth = int(re.sub('[^0-9]', '', sex_birth))
+                #  age = birth_to_age(birth)
 
-                 sex = re.sub('[^ㄱ-힗]', '', sex_birth)
+                #  sex = re.sub('[^ㄱ-힗]', '', sex_birth)
 
                  doc['confirmed_date'] = confirmed_date
                  doc['province'] = '서울'
                  doc['city'] = city
-                 doc['sex'] = sex
-                 doc['age'] = age
+                 doc['sex'] = None
+                 doc['age'] = None
 
                  yield doc

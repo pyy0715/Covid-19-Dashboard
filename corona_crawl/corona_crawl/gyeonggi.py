@@ -3,7 +3,7 @@ import re
 import time
 import pandas as pd
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 
 from datetime import date
@@ -26,7 +26,8 @@ def birth_to_age(birth):
 class gyeonggi:
     def __init__(self):
         self.url = 'https://www.gg.go.kr/bbs/board.do?bsIdx=722&menuId=2903#page=1'
-        self.driver = webdriver.Chrome(ChromeDriverManager().install())
+        # self.driver = webdriver.Chrome(ChromeDriverManager().install())
+        self.driver = webdriver.Chrome('/usr/local/share/chromedriver')
         self.confirmed_date = []
         self.city = []
         self.sex = []
@@ -79,16 +80,16 @@ class gyeonggi:
             rows = self.driver.find_elements_by_xpath("//*[@id='boardList']/tbody/tr")
             for row in rows:
                 self.confirmed_date.append(row.find_element_by_css_selector("td:nth-child(7)").text)
-                self.driver.implicitly_wait(15)
+                self.driver.implicitly_wait(20)
 
                 self.city.append(row.find_element_by_css_selector("td:nth-child(3)").text)
-                self.driver.implicitly_wait(15)
+                self.driver.implicitly_wait(20)
                 
                 self.sex.append(row.find_element_by_css_selector("td:nth-child(4)").text)
-                self.driver.implicitly_wait(15)
+                self.driver.implicitly_wait(20)
 
                 self.age.append(row.find_element_by_css_selector("td:nth-child(5)").text[1:3])
-                self.driver.implicitly_wait(15)
+                self.driver.implicitly_wait(20)
 
             print(f'Page{i} is Crawling Completed')
         
