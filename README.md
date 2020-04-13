@@ -21,7 +21,9 @@
 ```
 git clone https://github.com/pyy0715/Corona19_Dashboard.git
 cd Corona19_Dashboard/corona_crawl/corona_crawl
+mkdir data
 conda env create -f environment.yml
+conda activate Corona19
 
 # 서울
 >python -m scrapy crawl seoul -t csv -o - > data/seoul.csv
@@ -36,20 +38,20 @@ python gyeonggi.py
 ### 참고사항
 
 > 일부 사이트의 경우 나이가 아닌 출생년도만 표시되기 때문에,
-
+>
 > 10~20년도 사이의 출생자들은 판단하기 어려운 경우가 있었음.
-
+>
 > 이러한 경우, 99세 기준 1922년도를 정하고 미만의 출생자들은 밀레니엄 세대로 분류함.
 
 ## EDA
 
 `plotly` ![newplot](https://user-images.githubusercontent.com/47301926/77945194-392f9980-72fb-11ea-8a02-3a782a0b9a22.png)
 
-`Bokeh`
-
 ## Dashboard
 
-`Streamlit` `Dash` `Github Action'`
+[Streamlit](https://yyeon-covid19-korea.herokuapp.com/)
+
+`Dash` `Github Action'`
 
 **무엇을 보여줄 것인가?** **의미가 있는가?** **어떻게 배포할 것인가?**
 
