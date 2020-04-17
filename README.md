@@ -59,7 +59,7 @@ Plotly 라이브러리를 통해 Mapbox를 구현할 수 있습니다.
 
 크롤링 된 데이터와 대한민국 행정구역(SHP) 파일을 병합시킨 데이터를 이용함.
 
-`plotly_Mapbox` ![newplot](C:\Users\user\Desktop\Screenshot_1.png)
+`plotly_Mapbox`
 
 ## Dashboard
 
