@@ -47,6 +47,32 @@ python gyeonggi.py
 
 `plotly` ![newplot](https://user-images.githubusercontent.com/47301926/77945194-392f9980-72fb-11ea-8a02-3a782a0b9a22.png)
 
+## Vizualization
+
+사용 패키지
+- geopandas
+- plotly
+
+대한민국 행정구역(SHP) 파일 (출처 : http://www.gisdeveloper.co.kr/?p=2332)
+
+Plotly 라이브러리를 통해 Mapbox를 구현할 수 있습니다.
+
+크롤링 된 데이터와 대한민국 행정구역(SHP) 파일을 병합시킨 데이터를 이용함.
+
+'''python
+fig = px.choropleth_mapbox(sum7_gu, geojson=seoul_geo,
+                           locations="city",
+                           color="cum_count",
+                           featureidkey="properties.city",
+                           mapbox_style="carto-positron",
+                           animation_frame='confirmed_date',
+                           animation_group='city',
+                           center = {'lat' : 37.565, 'lon' :126.986}, zoom=10,
+                           color_continuous_scale="Reds", 
+                           opacity=0.5,
+                           range_color=(0, sum3_gu['cum_count'].max()+1),
+                           )
+'''
 ## Dashboard
 
 [Streamlit](https://yyeon-covid19-korea.herokuapp.com/)
