@@ -59,20 +59,8 @@ Plotly 라이브러리를 통해 Mapbox를 구현할 수 있습니다.
 
 크롤링 된 데이터와 대한민국 행정구역(SHP) 파일을 병합시킨 데이터를 이용함.
 
-'''python
-fig = px.choropleth_mapbox(sum7_gu, geojson=seoul_geo,
-                           locations="city",
-                           color="cum_count",
-                           featureidkey="properties.city",
-                           mapbox_style="carto-positron",
-                           animation_frame='confirmed_date',
-                           animation_group='city',
-                           center = {'lat' : 37.565, 'lon' :126.986}, zoom=10,
-                           color_continuous_scale="Reds", 
-                           opacity=0.5,
-                           range_color=(0, sum3_gu['cum_count'].max()+1),
-                           )
-'''
+`plotly_Mapbox` ![newplot](C:\Users\user\Desktop\Screenshot_1.png)
+
 ## Dashboard
 
 [Streamlit](https://yyeon-covid19-korea.herokuapp.com/)
