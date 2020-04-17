@@ -47,7 +47,7 @@ python gyeonggi.py
 
 `plotly` ![newplot](https://user-images.githubusercontent.com/47301926/77945194-392f9980-72fb-11ea-8a02-3a782a0b9a22.png)
 
-## Vizualization
+## Visualization
 
 사용 패키지
 - geopandas
