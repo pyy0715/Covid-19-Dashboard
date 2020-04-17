@@ -27,9 +27,11 @@ conda activate Corona19
 
 # 서울
 >python -m scrapy crawl seoul -t csv -o - > data/seoul.csv
+python -m scrapy crawl seoul -o data/seoul.csv -t csv
 
 # 인천
 python -m scrapy crawl incheon -t csv -o - > data/incheon.csv
+python -m scrapy crawl incheon -o data/incheon.csv -t csv
 
 # 경기
 python gyeonggi.py
