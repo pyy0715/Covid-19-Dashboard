@@ -6,6 +6,8 @@
 
 시각화 결과는 대시보드를 통해 구축되어집니다.
 
+[Covid19-Dasboard](https://yyeon-covid19-korea.herokuapp.com/)
+
 ## Crawling
 
 ### 수집 사이트
@@ -16,7 +18,7 @@
 수도권 | 인천 | <https://www.incheon.go.kr/health/HE020409>                      | `scrapy`   | [Link](https://github.com/pyy0715/Corona19_Dashboard/blob/master/corona_crawl/corona_crawl/corona_crawl/spiders/incheon.py)
 수도권 | 경기 | <https://www.gg.go.kr/bbs/board.do?bsIdx=722&menuId=2903#page=1> | `Selenium` | [Link](https://github.com/pyy0715/Corona19_Dashboard/blob/master/corona_crawl/corona_crawl/gyeonggi.py)
 
-### 실행
+### Crawler 실행
 
 ```
 git clone https://github.com/pyy0715/Corona19_Dashboard.git
@@ -44,33 +46,15 @@ python gyeonggi.py
 > 10~20년도 사이의 출생자들은 판단하기 어려운 경우가 있었음.
 >
 > 이러한 경우, 99세 기준 1922년도를 정하고 미만의 출생자들은 밀레니엄 세대로 분류함.
-
+---
 ## EDA
 
-`plotly` ![newplot](https://user-images.githubusercontent.com/47301926/77945194-392f9980-72fb-11ea-8a02-3a782a0b9a22.png)
+* **행정지역에 따른 날짜별 확진자 현황 그래프 (Example)**
+ ![newplot](https://user-images.githubusercontent.com/47301926/77945194-392f9980-72fb-11ea-8a02-3a782a0b9a22.png)
 
-## Visualization
+* **Animiation Heat Map**
 
-사용 패키지
-- geopandas
-- plotly
-
-대한민국 행정구역(SHP) 파일 (출처 : http://www.gisdeveloper.co.kr/?p=2332)
-
-Plotly 라이브러리를 통해 Mapbox를 구현할 수 있습니다.
-
-크롤링 된 데이터와 대한민국 행정구역(SHP) 파일을 병합시킨 데이터를 이용함.
-
-`plotly_Mapbox`
-
+---
 ## Dashboard
 
-[Streamlit](https://yyeon-covid19-korea.herokuapp.com/)
-
-`Dash` `Github Action'`
-
-**무엇을 보여줄 것인가?** **의미가 있는가?** **어떻게 배포할 것인가?**
-
-## Scheduler
-
-crontab?
+[Covid19-Dasboard](https://yyeon-covid19-korea.herokuapp.com/)
