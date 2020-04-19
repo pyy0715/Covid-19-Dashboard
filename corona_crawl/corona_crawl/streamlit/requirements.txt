@@ -1,0 +1,6 @@
+numpy==1.18.1
+pandas==1.0.3
+plotly==4.6.0
+Scrapy==2.0.1
+selenium==3.141.0
+streamlit==0.57.3
