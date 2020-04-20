@@ -4,3 +4,5 @@ plotly==4.6.0
 Scrapy==2.0.1
 selenium==3.141.0
 streamlit==0.57.3
+geopandas==0.7.0
+mapboxgl==0.10.2
