@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 import datetime
 
+from PIL import Image
 from mapboxgl.utils import create_color_stops, create_numeric_stops
 from mapboxgl.viz import *
 import streamlit as st
@@ -22,8 +23,13 @@ day_dict = {'하루':'1D', '3일':'3D', '7일':'7D', '15일': '15D'}
 city_dict = {'서울':'seoul', '인천':'incheon', '경기':'gyeonggi'}
 centroid_dict = {
     '서울': {'lat' : 37.5642135, 'lon' :127.0016985},
-    '경기': {'lat' : 36.5864315 , 'lon' :127.0462765},
+    '경기': {'lat' : 37.457167 , 'lon' :127.190292},
     '인천': {'lat' : 37.593355, 'lon' :126.592526},
+    }
+zoom_dict = {
+    '서울': 9,
+    '경기': 7.7,
+    '인천': 9,
     }
 
 ## Title
@@ -32,18 +38,20 @@ st.title('COVID-19 Dashboard')
 
 ## Header/Subheader
 st.header('In Korea, COVID-19 Dashboard With Plotly')
-st.subheader('Version 20-04-26')
+st.subheader('Version 20-04-24')
 ## Text
-st.text("Hello! 이 페이지는 아직 개발중입니다.\n더 많은 시각화 차트와 기능들을 제공하기 위해 조금만 기다려주세요!")
-st.text("현재는 서울, 경기, 인천 수도권 지역의 그래프만 나타내고 있습니다.")
+st.text("현재는 서울, 경기, 인천 수도권 지역의 그래프만 나타내고 있습니다. \n더 많은 시각화 차트와 기능들을 제공하기 위해 조금만 기다려주세요!")
 
 # @st.cache(allow_output_mutation=True)
 def load_data(city):
     patent_dir = './data/'
+    patent_dir2 = './file/'
     df = pd.read_csv(os.path.join(patent_dir, city + '.csv'))
     with open(os.path.join(patent_dir, city + '.geojson'), encoding='utf-8') as jsonfile:
         geo_json=json.load(jsonfile)
-    return df, geo_json
+    img = Image.open(os.path.join(patent_dir2, city + '.jpg'))
+    resize_image = img.resize((1200, 400))
+    return df, geo_json, resize_image
 
 
 
@@ -57,7 +65,7 @@ def write_main_page():
 
 이에 따라 IT업계에 종사하시는 분들 역시 바이러스 확산을 막기 위해, 자신의 위치에서 공익적인 목적의 서비스를 제공하는 것에서 크게 감명을 받게 되었습니다.
 
-정부에서도 [질병관리본부](http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=13&ncvContSeq=&contSeq=&board_id=&gubun=)를 통해 국내 및 시도별 발생동향 등을 제공하고 있습니다.
+이와 더불어 정부에서도 [질병관리본부](http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=13&ncvContSeq=&contSeq=&board_id=&gubun=)에서 국내 및 시도별 발생동향 등을 제공하고 있습니다.
 
 하지만 자신의 지역에서의 추세 현황을 확인하기 위해서는 시도별 페이지에 들어가야 하며, 시도별로 통합된 형태의 정보를 제공하고 있지 않아 큰 아쉬움을 느끼게 되어 프로젝트 결심을 하게 되었습니다.
 
@@ -67,18 +75,17 @@ def write_main_page():
 
 마지막으로 COVID-19 바이러스의 신속한 해결을 기원합니다.🙏️🙏️🙏️\n
 
-- 목적
+- **목적**
     - 수도권 지역에서의 확진자 현황을 통합된 형태의 데이터로 제공합니다.
 
     - 수도권 지역에서의 자치구별 발생 현황을 일별에 따른 그래프 형태로 제공합니다.
 
-- Raw Data
-    - 테이블 형태의 데이터셋을 확인할 수 있습니다.
-- Graph
+- **Graph**
     - 1월 23일부터 현재까지 서울, 경기, 인천 현황을 그래프로 확인할 수 있습니다.
 
 ## Source
 - [Code](https://github.com/pyy0715/Corona19_Dashboard)
+
 ## Contributor
 - [박용연](https://github.com/pyy0715)
 - [문현종](https://github.com/hj0302)
@@ -96,6 +103,7 @@ def plot_confirmed(df, page):
         )
     
     fig.update_layout(title_text=f'In {page}, Inferenced Peoples With Animation Bar Plot', showlegend=False)
+    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
     fig.update_xaxes(tickangle=45, title_text="Time Axis")
     fig.update_yaxes(tickangle=15, ticksuffix="명", title_text="Inferenced Peoples")
 
@@ -109,16 +117,17 @@ def plot_map_confirmed(df, json, centroid_dict, page):
         locations="city",
         color="cum_count",
         featureidkey="properties.city",
-        mapbox_style="carto-positron",
+        mapbox_style="open-street-map",
         animation_frame='confirmed_date',
         animation_group='city',
         center = centroid_dict[page], 
-        zoom=9,
+        zoom= zoom_dict[page],
         opacity=0.5,
         range_color=(0, df['cum_count'].max()+5),
         labels={'cum_count':'Inferenced Peoples'}
         )
     fig.update_layout(title_text=f'In {page}, Inferenced Peoples With Animation Heat Map', showlegend=False)
+    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
     return fig
 
 def create_layout():
@@ -135,16 +144,30 @@ def create_layout():
                                  "3일",
                                  "7일",
                                  "15일"])
+    st.sidebar.title("관리")
+    st.sidebar.info(
+        """
+        이 앱은 오픈소스 프로젝트로 운영되며, 여러분의 많은 관심 부탁드립니다.
+        **Park Young Yeon**에 의해 유지 보수되고 있습니다.
+        만약 저에 대해 더 알고 싶다면 [LinkedIn](linkedin.com/in/young-yeon-park-67086a14b/)을 방문해주세요.
+        """
+    )
+    st.sidebar.title("문의사항 및 이슈")
+    st.sidebar.info(
+        "문제가 있거나 오류가 발생할 경우 [Github](https://github.com/pyy0715/Corona19_Dashboard/issues)이나"
+        "[Gmail](https://mail.google.com/mail/u/0/#inbox)을 통해 알려주세요!"
+    )
 
     if page == 'Main':
         write_main_page()
     if (page!='Main') & (day in ["하루", "3일", "7일","15일"]):
-        df, json = load_data(city_dict[page])
+        df, json, img = load_data(city_dict[page])
         day_df = process_app(page, df, day_dict[day])
 
         fig=plot_confirmed(day_df, page)
         fig2=plot_map_confirmed(day_df, json, centroid_dict, page)
-        
+
+        st.image(img, width=400)
         st.plotly_chart(fig)
         st.plotly_chart(fig2)
 
