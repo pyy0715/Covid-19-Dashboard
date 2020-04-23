@@ -12,7 +12,7 @@
 
 </br>
 
-### Data Source
+## Data Source
 그룹  | 지역 | 주소                                                               | Package    | Code
 --- | -- | ---------------------------------------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------
 수도권 | 서울 | <https://www.seoul.go.kr/coronaV/coronaStatus.do>                | `scrapy`   | [Link](https://github.com/pyy0715/Corona19_Dashboard/blob/master/corona_crawl/corona_crawl/corona_crawl/spiders/seoul.py)
@@ -22,7 +22,7 @@
 
 </br>
 
-### Instruction
+## Instruction
 ```{bash}
 git clone https://github.com/pyy0715/Corona19_Dashboard.git
 cd Corona19_Dashboard/corona_crawl/corona_crawl
@@ -41,7 +41,7 @@ python gyeonggi.py
 ```
 </br>
 
-### Exploratory Data Analysis
+## Exploratory Data Analysis
 
 **Animation Bar Plot**
 
@@ -53,12 +53,12 @@ python gyeonggi.py
 
 
 
-### Note
+## Note
 
 * 사이트의 크롤링 주소가 계속 바뀌는 현상이 있어서 크롤링이 실행되지 않을 경우 `Issue`에 남겨주세요.
 
 * 위와 마찬가지로 제공되는 데이터가 달라질 수 있습니다. 
 예를들어, 4월 15일 이후부터 서울시에서는 확진자의 연령을 공개하지 않습니다.
 
-### Reference
+## Reference
 [Streamlit](https://www.streamlit.io/)
