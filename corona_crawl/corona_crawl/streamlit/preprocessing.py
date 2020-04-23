@@ -65,7 +65,7 @@ def process_app(page, df, period):
 
     # Generate Days Resampling
     day_idx = pd.date_range(start=day_df['confirmed_date'].min(),
-                            periods=len(day_df.set_index('confirmed_date').resample('3D').first()), 
+                            periods=len(day_df.set_index('confirmed_date').resample(period).first()), 
                             freq=period)
 
     # Reset Index

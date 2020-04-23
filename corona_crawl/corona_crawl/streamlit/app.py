@@ -22,8 +22,8 @@ day_dict = {'하루':'1D', '3일':'3D', '7일':'7D', '15일': '15D'}
 city_dict = {'서울':'seoul', '인천':'incheon', '경기':'gyeonggi'}
 centroid_dict = {
     '서울': {'lat' : 37.5642135, 'lon' :127.0016985},
-    '경기': {'lat' : 36.571424 , 'lon' :128.722687},
-    '인천': {'lat' : 37.469221, 'lon' :126.573234},
+    '경기': {'lat' : 36.5864315 , 'lon' :127.0462765},
+    '인천': {'lat' : 37.593355, 'lon' :126.592526},
     }
 
 ## Title
@@ -32,12 +32,12 @@ st.title('COVID-19 Dashboard')
 
 ## Header/Subheader
 st.header('In Korea, COVID-19 Dashboard With Plotly')
-st.subheader('Version 200420')
+st.subheader('Version 20-04-26')
 ## Text
 st.text("Hello! 이 페이지는 아직 개발중입니다.\n더 많은 시각화 차트와 기능들을 제공하기 위해 조금만 기다려주세요!")
 st.text("현재는 서울, 경기, 인천 수도권 지역의 그래프만 나타내고 있습니다.")
 
-
+# @st.cache(allow_output_mutation=True)
 def load_data(city):
     patent_dir = './data/'
     df = pd.read_csv(os.path.join(patent_dir, city + '.csv'))
@@ -86,7 +86,7 @@ def write_main_page():
              )
 
 @st.cache
-def plot_confirmed(df):
+def plot_confirmed(df, page):
     fig = px.bar(
         df,
         x="city", y="cum_count",
@@ -95,14 +95,14 @@ def plot_confirmed(df):
         range_y=[0, df['cum_count'].max()+5]
         )
     
-    fig.update_layout(title_text='Inferenced Peoples In City With Animation Bar Plot', showlegend=False)
+    fig.update_layout(title_text=f'In {page}, Inferenced Peoples With Animation Bar Plot', showlegend=False)
     fig.update_xaxes(tickangle=45, title_text="Time Axis")
     fig.update_yaxes(tickangle=15, ticksuffix="명", title_text="Inferenced Peoples")
 
     return fig
 
 @st.cache
-def plot_map_confirmed(df, json, centroid_dict, city):
+def plot_map_confirmed(df, json, centroid_dict, page):
     fig = px.choropleth_mapbox(
         data_frame=df, 
         geojson=json,
@@ -112,14 +112,13 @@ def plot_map_confirmed(df, json, centroid_dict, city):
         mapbox_style="carto-positron",
         animation_frame='confirmed_date',
         animation_group='city',
-        center = centroid_dict[city], 
-        zoom=10,
-        color_continuous_scale="Reds", 
+        center = centroid_dict[page], 
+        zoom=9,
         opacity=0.5,
         range_color=(0, df['cum_count'].max()+5),
+        labels={'cum_count':'Inferenced Peoples'}
         )
-
-    fig.update_layout(margin={"r":0, "t":0, "l":0, "b":0}, overwrite=True)
+    fig.update_layout(title_text=f'In {page}, Inferenced Peoples With Animation Heat Map', showlegend=False)
     return fig
 
 def create_layout():
@@ -142,8 +141,10 @@ def create_layout():
     if (page!='Main') & (day in ["하루", "3일", "7일","15일"]):
         df, json = load_data(city_dict[page])
         day_df = process_app(page, df, day_dict[day])
-        fig=plot_confirmed(day_df)
+
+        fig=plot_confirmed(day_df, page)
         fig2=plot_map_confirmed(day_df, json, centroid_dict, page)
+        
         st.plotly_chart(fig)
         st.plotly_chart(fig2)
 
