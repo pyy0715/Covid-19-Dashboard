@@ -44,17 +44,17 @@ python gyeonggi.py
 ### Exploratory Data Analysis
 
 * **Animation Bar Plot**
- ![newplot](https://user-images.githubusercontent.com/47301926/77945194-392f9980-72fb-11ea-8a02-3a782a0b9a22.png)
+![newplot](https://user-images.githubusercontent.com/47301926/77945194-392f9980-72fb-11ea-8a02-3a782a0b9a22.png)
 
 * **Animiation Heat Map**
 ![newplot (1)](https://user-images.githubusercontent.com/47301926/80133256-ef735f80-85d7-11ea-88ad-039034536419.png)
 
-</br>
+
 
 ### Note
 
 * 사이트의 크롤링 주소가 계속 바뀌는 현상이 있어서 크롤링이 실행되지 않을 경우 `Issue`에 남겨주세요.
-</br>
+
 * 위와 마찬가지로 제공되는 데이터가 달라질 수 있습니다. 
 예를들어, 4월 15일 이후부터 서울시에서는 확진자의 연령을 공개하지 않습니다.
 
