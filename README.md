@@ -43,10 +43,12 @@ python gyeonggi.py
 
 ### Exploratory Data Analysis
 
-* **Animation Bar Plot**
+**Animation Bar Plot**
+
 ![newplot](https://user-images.githubusercontent.com/47301926/77945194-392f9980-72fb-11ea-8a02-3a782a0b9a22.png)
 
-* **Animiation Heat Map**
+**Animiation Heat Map**
+
 ![newplot (1)](https://user-images.githubusercontent.com/47301926/80133256-ef735f80-85d7-11ea-88ad-039034536419.png)
 
 
