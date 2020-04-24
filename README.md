@@ -24,8 +24,8 @@
 
 ## Instruction
 ```{bash}
-git clone https://github.com/pyy0715/Corona19_Dashboard.git
-cd Corona19_Dashboard/corona_crawl/corona_crawl
+https://github.com/pyy0715/Covid-19-Dashboard.git
+cd Covid-19-Dashboard/corona_crawl/corona_crawl
 mkdir data
 conda env create -f environment.yml
 conda activate Corona19
