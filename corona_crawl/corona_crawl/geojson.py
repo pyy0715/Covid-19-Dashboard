@@ -1,6 +1,9 @@
 import json
+import re
 import pandas as pd
 import geopandas as gpd
+from shapely.geometry import Polygon
+from shapely.ops import cascaded_union
 import numpy as np
 
 import warnings
@@ -36,7 +39,10 @@ class ploygon_to_json:
         if self.name=='incheon':
             geo_metry = geo_df.iloc[170:180, :]
         if self.name=='gyeonggi':
+            regex = re.compile('.+(?:시|군)')
             geo_metry = geo_df.iloc[18:60, :]
+            geo_metry['city'] = geo_metry['city'].apply(lambda x: regex.match(x.strip()).group(0))
+            geo_metry = geo_metry.groupby('city')['geometry'].agg(lambda x: cascaded_union(list(x))).reset_index()
 
         return geo_metry
 

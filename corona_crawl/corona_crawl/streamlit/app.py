@@ -128,6 +128,7 @@ def plot_map_confirmed(df, json, centroid_dict, page):
         )
     fig.update_layout(title_text=f'In {page}, Inferenced Peoples With Animation Heat Map', showlegend=False)
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+    fig.update_traces(marker=dict(line=dict(width=2, color='white')))
     return fig
 
 def create_layout():
@@ -149,13 +150,13 @@ def create_layout():
         """
         이 앱은 오픈소스 프로젝트로 운영되며, 여러분의 많은 관심 부탁드립니다.
         **Park Young Yeon**에 의해 유지 보수되고 있습니다.
-        만약 저에 대해 더 알고 싶다면 [LinkedIn](linkedin.com/in/young-yeon-park-67086a14b/)을 방문해주세요.
+        만약 저에 대해 더 알고 싶다면 [LinkedIn](https://www.linkedin.com/in/young-yeon-park-67086a14b?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BUbTlmKCBRIO0gUqsRveYgA%3D%3D)을 방문해주세요.
         """
     )
     st.sidebar.title("문의사항 및 이슈")
     st.sidebar.info(
         "문제가 있거나 오류가 발생할 경우 [Github](https://github.com/pyy0715/Corona19_Dashboard/issues)이나"
-        "[Gmail](https://mail.google.com/mail/u/0/#inbox)을 통해 알려주세요!"
+        "[Gmail](pushpyy@gmail.com)을 통해 알려주세요!"
     )
 
     if page == 'Main':
