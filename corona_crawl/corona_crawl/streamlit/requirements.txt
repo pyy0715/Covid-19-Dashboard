@@ -1,7 +1,7 @@
 numpy==1.22.0
 pandas==1.0.3
 plotly==4.6.0
-Scrapy==2.0.1
+Scrapy==2.11.1
 selenium==3.141.0
 streamlit==0.57.3
 geopandas==0.7.0
